@@ -1,0 +1,28 @@
+ TreeNode* right(TreeNode*node,TreeNode*curr)
+    {
+       while(node->right!=NULL && node->right!=curr)
+       {
+           node=node->right;
+       }
+        return node;
+   }
+    vector<int> preorderTraversal(TreeNode* root) {
+        vector<int>ans;
+        TreeNode*curr=root;
+        while(curr!=NULL)
+        {
+            TreeNode*left=curr->left;
+            if(left==NULL)
+            {
+                ans.push_back(curr->val);curr=curr->right;
+            }
+            else
+            {
+                TreeNode*rmn=right(left,curr);
+                if(rmn->right==NULL){rmn->right=curr;ans.push_back(curr->val);curr=curr->left;}
+                else 
+                {rmn->right=NULL;curr=curr->right;}
+            }
+            }
+        return ans;
+    }
