@@ -1,0 +1,20 @@
+ vector<vector<int>> levelOrder(TreeNode* root) {
+        queue<TreeNode*>q;
+        q.push(root);
+        vector<vector<int>>ans;
+        if(root==NULL){return ans;}
+        while(!q.empty())
+        {
+            int size=q.size();
+            vector<int>smallans;
+            while(size-->0)
+            {
+                TreeNode*rn=q.front();q.pop();
+                if(rn->left!=NULL){q.push(rn->left);}
+                if(rn->right!=NULL){q.push(rn->right);}
+                smallans.push_back(rn->val);
+            }
+            ans.push_back(smallans);
+        }
+        return ans;
+    }
